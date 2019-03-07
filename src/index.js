@@ -60,7 +60,8 @@ todos.put(
   }
 );
 
-todos.delete("/all", (req, res) => {
+todos.delete("/all", async (req, res) => {
+  await fs.ensureFile(file);
   fs.writeJSON(file, [], err => {
     if (err) res.send(err);
     res.json({ success: true });
