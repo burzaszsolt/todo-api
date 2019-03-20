@@ -69,12 +69,12 @@ const checkPermission = permission => (req, res, next) => {
   next();
 };
 
-todos.get("/", checkPermission("READ"), async (req, res) => {
+todos.get("/", auth, checkPermission("READ"), async (req, res) => {
   const todos = await getTodos();
   res.json(todos);
 });
 
-todos.get("/:id", checkPermission("READ"), async (req, res) => {
+todos.get("/:id", auth, checkPermission("READ"), async (req, res) => {
   const todos = await getTodos();
   if (todos.findIndex(todo => todo.id === req.params.id) === -1) {
     throw new Error("Cannot find todo with this identifier|404|NOT_FOUND");
@@ -103,12 +103,12 @@ todos.put("/:id", auth, checkPermission("UPDATE"), async (req, res, next) => {
   res.json(updatedTodo);
 });
 
-todos.delete("/all", checkPermission("DELETE"), async (req, res, next) => {
+todos.delete("/all", auth, checkPermission("DELETE"), async (req, res, next) => {
   await fs.writeJson(TODOS_FILE_NAME, []);
   res.json([]);
 });
 
-todos.delete("/completed", checkPermission("DELETE"), async (req, res, next) => {
+todos.delete("/completed", auth, checkPermission("DELETE"), async (req, res, next) => {
   const todos = await getTodos();
   const completedTodos = todos.filter(todo => todo.completed);
   const newTodos = todos.filter(todo => !todo.completed);
