@@ -1,0 +1,14 @@
+[
+  {
+    "id": "4h6c8ec0-4aec-11e9-8c7b-3d030245a18c",
+    "username": "egyik",
+    "password": "Alma123",
+    "permissions": ["CREATE", "READ", "UPDATE", "DELETE"]
+  },
+  {
+    "id": "6j8c8ec0-4aec-11e9-8c7b-3d030245a18c",
+    "username": "masik",
+    "password": "Alma456",
+    "permissions": ["CREATE", "READ", "UPDATE"]
+  }
+]
